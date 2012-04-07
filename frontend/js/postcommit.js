@@ -3,5 +3,10 @@ jQuery(function($) {
 
 	socket.on('commit', function(data) {
 		console.log(data);
+
+		$('<li>' + data.message + '</li>')
+			.css({display: 'none'})
+			.appendTo($('#commits'))
+			.fadeIn('slow');
 	});
 });

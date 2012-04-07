@@ -17,3 +17,12 @@ To send a message to the server, simply request — e.g. via `curl` — a URL l
 	http://127.0.0.1:24374/?message=The+message+that+will+appear&author=Rob+Miller&time=2012-04-07+16:01:10&project=Some+Client+Project
 
 This is most usefully done in a Git `post-update` hook, but can realistically be done from anywhere.
+
+## Todo
+
+There's lots to do, but the obvious things are:
+
+* Potentially convert message-receiving code to socket.io from node's http
+* General frontend styling
+* "Mentions" of people using `@`, with a separate list of activity that mentioned you
+* Frontend for requesting code review

@@ -5,9 +5,6 @@ var messaging_port    = 24374;
 var messaging_address = '127.0.0.1';
 
 http.createServer(function(request, response) {
-	var crypto = require('crypto');
-	var growl = require('./lib/growl.js');
-
 	var url = require('url').parse(request.url, true);
 
 	var message = '';
@@ -38,9 +35,6 @@ http.createServer(function(request, response) {
 		time: time,
 		project: project
 	}
-
-	// Notify developers via Growl that an update has been pushed.
-	growl.notify(message);
 
 	// Notify streaming clients about the update
 	io.sockets.emit('commit', update);

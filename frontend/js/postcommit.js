@@ -5,17 +5,17 @@ jQuery(function($) {
 		console.log(push);
 
 		var markup = '';
-		markup += '<li class="commit">';
+		markup += '<li class="push">';
 		markup += '<p class="push-time">' + push.time + '</p>';
-		markup += '<p class="push-message">' + push.message + '</p>';
+		markup += '<p class="message">' + push.message + '</p>';
 		markup += '<p class="push-meta">';
-		markup += '<span class="author">by ' + push.author + '</span> ';
-		markup += '<span class="project">on ' + push.project + '</span></p>';
+		markup += 'by <span class="author">' + push.author + '</span> ';
+		markup += 'on <span class="project">' + push.project + '</span></p>';
 		markup += '</li>'
 
 		$(markup)
 			.css({display: 'none'})
-			.appendTo($('#stream'))
+			.prependTo($('#stream'))
 			.fadeIn(1000);
 	});
 
@@ -24,15 +24,15 @@ jQuery(function($) {
 
 		var markup = '';
 		markup += '<li class="review-request">';
-		markup += '<p>' + request.author + ' wants review on ' + request.project + ':</p>';
+		markup += '<p><span class="author">' + request.author + '</span> wants review on ' + request.project + ':</p>';
 		if ( request.message.length > 0 ) {
-			markup += '<p>' + request.message + '</p>';
+			markup += '<p class="message">' + request.message + '</p>';
 		}
 		markup += '</li>';
 
 		$(markup)
 			.css({display: 'none'})
-			.appendTo($('#stream'))
+			.prependTo($('#stream'))
 			.fadeIn(1000);
 	});
 });

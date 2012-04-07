@@ -1,0 +1,25 @@
+.container {
+	position:relative;
+	overflow:hidden;
+}
+
+#stream {
+	list-style: none;
+	width:50%;
+	float:left;
+}
+
+#stream li {
+	padding-bottom:16px;
+	margin-bottom:16px;
+	border-bottom:1px solid #ccc;
+}
+
+#stream li .author {
+	font-weight:bold;
+}
+
+#stream li .message {
+	font-size:16px;
+	line-height:1.5;
+}

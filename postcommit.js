@@ -7,41 +7,22 @@ var messaging_address = '127.0.0.1';
 http.createServer(function(request, response) {
 	var url = require('url').parse(request.url, true);
 
-	var message = '';
-	if ( typeof url.query.message !== 'undefined' ) {
-		message = url.query.message;
-	}
+	var update = {};
 
-	var author = '';
-	if ( typeof url.query.author !== 'undefined' ) {
-		author = url.query.author;
-	}
+	["message", "author", "time", "project"].forEach(function(key) {
+		if ( typeof url.query[key] !== 'undefined' ) {
+			update[key] = url.query[key];
+		}
+	});
 
-	var time = '';
-	if ( typeof url.query.author !== 'undefined' ) {
-		time = url.query.time;
-	}
-
-	var project = '';
-	if ( typeof url.query.project !== 'undefined' ) {
-		project = url.query.project;
-	}
-
-	console.log('Received message: ' + message + ' by ' + author);
-
-	var update = {
-		message: message,
-		author: author,
-		time: time,
-		project: project
-	}
+	console.log(update);
 
 	// Notify streaming clients about the update
 	io.sockets.emit('commit', update);
 	console.log('Notified streaming clients.');
 
 	response.writeHead(200, {'Content-Type': 'text/plain'});
-	response.end(message + '\n');
+	response.end('Message posted.\n');
 }).listen(messaging_port, messaging_address);
 
 console.log('Listening for messages on ' + messaging_address + ':' + messaging_port);

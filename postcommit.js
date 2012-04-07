@@ -10,22 +10,44 @@ http.createServer(function(request, response) {
 
 	var url = require('url').parse(request.url, true);
 
-	var msg = '';
-	if ( typeof url.query.msg !== 'undefined' ) {
-		msg = url.query.msg;
+	var message = '';
+	if ( typeof url.query.message !== 'undefined' ) {
+		message = url.query.message;
 	}
 
-	console.log('Received message: ' + msg);
+	var author = '';
+	if ( typeof url.query.author !== 'undefined' ) {
+		author = url.query.author;
+	}
+
+	var time = '';
+	if ( typeof url.query.author !== 'undefined' ) {
+		time = url.query.time;
+	}
+
+	var project = '';
+	if ( typeof url.query.project !== 'undefined' ) {
+		project = url.query.project;
+	}
+
+	console.log('Received message: ' + message + ' by ' + author);
+
+	var update = {
+		message: message,
+		author: author,
+		time: time,
+		project: project
+	}
 
 	// Notify developers via Growl that an update has been pushed.
-	growl.notify(msg);
+	growl.notify(message);
 
 	// Notify streaming clients about the update
-	io.sockets.emit('commit', {message: msg});
+	io.sockets.emit('commit', update);
 	console.log('Notified streaming clients.');
 
 	response.writeHead(200, {'Content-Type': 'text/plain'});
-	response.end(msg + '\n');
+	response.end(message + '\n');
 }).listen(messaging_port, messaging_address);
 
 console.log('Listening for messages on ' + messaging_address + ':' + messaging_port);

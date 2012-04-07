@@ -6,7 +6,7 @@ var messaging_address = '127.0.0.1';
 
 http.createServer(function(request, response) {
 	var crypto = require('crypto');
-	var growl = require('./growl.js');
+	var growl = require('./lib/growl.js');
 
 	var url = require('url').parse(request.url, true);
 

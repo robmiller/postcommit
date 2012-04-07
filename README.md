@@ -27,3 +27,5 @@ There's lots to do, but the obvious things are:
 * "Mentions" of people using `@`, with a separate list of activity that mentioned you
 * Frontend for requesting code review
 * Some better error handling on the frontend, including trying to reacquire a stream when it goes away
+* Lots better error handling in the backend — it's currently pretty easy to crash the server with malformed input
+* Authentication? Though the intended use-case is internal networks, it would probably be useful

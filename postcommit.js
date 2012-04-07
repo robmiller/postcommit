@@ -7,18 +7,24 @@ var messaging_address = '127.0.0.1';
 http.createServer(function(request, response) {
 	var url = require('url').parse(request.url, true);
 
+	type = 'push';
+
 	var update = {};
 
-	["message", "author", "time", "project"].forEach(function(key) {
+	["type", "message", "author", "time", "project"].forEach(function(key) {
 		if ( typeof url.query[key] !== 'undefined' ) {
 			update[key] = url.query[key];
+		} else {
+			update[key] = '';
 		}
 	});
 
 	console.log(update);
 
+	type = update.type;
+
 	// Notify streaming clients about the update
-	io.sockets.emit('commit', update);
+	io.sockets.emit(type, update);
 	console.log('Notified streaming clients.');
 
 	response.writeHead(200, {'Content-Type': 'text/plain'});

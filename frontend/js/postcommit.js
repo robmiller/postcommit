@@ -1,16 +1,16 @@
 jQuery(function($) {
 	var socket = io.connect('http://postcommit:24375');
 
-	socket.on('commit', function(commit) {
-		console.log(commit);
+	socket.on('push', function(push) {
+		console.log(push);
 
 		var markup = '';
 		markup += '<li>';
-		markup += '<p class="commit-time">' + commit.time + '</p>';
-		markup += '<p class="commit-message">' + commit.message + '</p>';
-		markup += '<p class="commit-meta">';
-		markup += '<span class="author">by ' + commit.author + '</span> ';
-		markup += '<span class="project">on ' + commit.project + '</span></p>';
+		markup += '<p class="push-time">' + push.time + '</p>';
+		markup += '<p class="push-message">' + push.message + '</p>';
+		markup += '<p class="push-meta">';
+		markup += '<span class="author">by ' + push.author + '</span> ';
+		markup += '<span class="project">on ' + push.project + '</span></p>';
 		markup += '</li>'
 
 		$(markup)

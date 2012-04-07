@@ -9,7 +9,7 @@ http.createServer(function(request, response) {
 
 	var update = {};
 
-	["message", "author", "time", "project"].forEach(function(key) {
+	["type", "message", "author", "time", "project"].forEach(function(key) {
 		if ( typeof url.query[key] !== 'undefined' ) {
 			update[key] = url.query[key];
 		}
@@ -18,7 +18,7 @@ http.createServer(function(request, response) {
 	console.log(update);
 
 	// Notify streaming clients about the update
-	io.sockets.emit('commit', update);
+	io.sockets.emit(type, update);
 	console.log('Notified streaming clients.');
 
 	response.writeHead(200, {'Content-Type': 'text/plain'});

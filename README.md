@@ -14,7 +14,7 @@ The backend is built in node, and uses socket.io to communicate with clients; th
 
 To send a message to the server, simply request — e.g. via `curl` — a URL like the following:
 
-	http://127.0.0.1:24374/?message=The+message+that+will+appear&author=Rob+Miller&time=2012-04-07+16:01:10&project=Some+Client+Project
+	http://127.0.0.1:24374/message?type=push&message=The+message+that+will+appear&author=Rob+Miller&time=2012-04-07+16:01:10&project=Some+Client+Project
 
 This is most usefully done in a Git `post-update` hook, but can realistically be done from anywhere.
 

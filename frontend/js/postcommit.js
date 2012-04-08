@@ -35,4 +35,14 @@ jQuery(function($) {
 			.prependTo($('#stream'))
 			.fadeIn(1000);
 	});
+
+	socket.on('message', function(data) {
+		console.log(data);
+	});
+
+	// Handle submission of messages from the frontend
+	$('#message').submit(function() {
+		socket.emit('message', {message: $('textarea.message').val()});
+		return false;
+	});
 });

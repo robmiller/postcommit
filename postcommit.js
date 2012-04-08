@@ -50,8 +50,8 @@ messaging.get('/message', function(request, response) {
 
 // Handle submission of messages from the frontend
 io.sockets.on('connection', function(socket) {
-	io.sockets.on('message', function(data) {
+	socket.on('chat', function(data) {
 		console.log('Received message from frontend: ' + data);
-		io.sockets.emit('message', data);
+		io.sockets.emit('chat', data);
 	});
 });

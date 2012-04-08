@@ -35,4 +35,27 @@ jQuery(function($) {
 			.prependTo($('#stream'))
 			.fadeIn(1000);
 	});
+
+	socket.on('message', function(data) {
+		console.log(data);
+	});
+
+	// Handle submission of messages from the frontend
+	$('#message').submit(function() {
+		socket.emit('chat', {message: $('textarea.message').val()});
+		return false;
+	});
+
+	// ...and also the receiving of chat messages from other users.
+	socket.on('chat', function(chat) {
+		var markup = '';
+		markup += '<li class="chat">';
+		markup += '<p class="message">' + chat.message + '</p>';
+		markup += '</li>';
+
+		$(markup)
+			.css({display: 'none'})
+			.prependTo($('#stream'))
+			.fadeIn(1000);
+	});
 });

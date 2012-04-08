@@ -47,3 +47,11 @@ messaging.get('/message', function(request, response) {
 	response.writeHead(200, {'Content-Type': 'text/plain'});
 	response.end('Message posted.\n');
 });
+
+// Handle submission of messages from the frontend
+io.sockets.on('connection', function(socket) {
+	socket.on('chat', function(data) {
+		console.log('Received message from frontend: ' + data);
+		io.sockets.emit('chat', data);
+	});
+});

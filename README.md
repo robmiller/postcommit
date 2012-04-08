@@ -4,6 +4,8 @@ postcommit is a web-based activity stream for your Git repositories — or any 
 
 Whenever there's a new push to one of your Git repositories, the central server is sent details of the changes; it then pushes that information out to any interested clients, for whom it shows up as a new message in their activity stream.
 
+Developers can also send release-based messages to the stream — if they've just broken a build, for example.
+
 postcommit is, for now at least, impermanent; users receive only those updates that have happened since they requested the page, and updates aren't stored anywhere for posterity. This may change, though.
 
 ## Requirements
